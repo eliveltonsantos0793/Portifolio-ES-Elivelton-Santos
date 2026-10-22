@@ -92,3 +92,35 @@ Desenvolvimento web, criação de sites institucionais e interesse em automaçã
 ---
 
 Este projeto é um portfólio em evolução. Atualize a descrição, os projetos e os contatos conforme seu trabalho e suas competências avançarem.
+
+## Galeria dinâmica de projetos e empresas parceiras
+
+Os cards da seção **Projetos** agora são gerados pelo arquivo `assets/js/script.js`. Para cadastrar um novo projeto, adicione um objeto ao array `PROJECTS`, mantendo estes campos:
+
+- `id`: identificador único, sem espaços.
+- `name`: nome que aparece no card.
+- `category`: categoria curta do projeto.
+- `status`: situação ou tipo de projeto.
+- `description`: resumo curto.
+- `image` e `imageAlt`: caminho da imagem e texto alternativo.
+- `url`: endereço da demonstração publicada.
+- `tags`: lista de tecnologias ou características.
+- `featured: true` (opcional): destaca o card.
+
+Coloque a imagem em `assets/images/` e use o caminho relativo, por exemplo `assets/images/meu-projeto.png`. A galeria tem rolagem horizontal própria e controles de navegação. A seleção de vários projetos monta uma mensagem para o WhatsApp.
+
+### Cadastrar empresas parceiras
+
+No mesmo arquivo `assets/js/script.js`, localize `PARTNER_COMPANIES`. Adicione apenas empresas com as quais exista uma parceria ou contrato confirmado e cuja divulgação esteja autorizada. Exemplo:
+
+```js
+const PARTNER_COMPANIES = [
+  {
+    name: "Nome da empresa",
+    logo: "assets/images/logo-empresa.png",
+    url: "https://empresa.com.br"
+  }
+];
+```
+
+O campo `logo` é opcional; sem ele, o nome da empresa será exibido em texto. O campo `url` também é opcional. A faixa próxima ao rodapé só mostra marcas quando houver empresas cadastradas, evitando exibir clientes fictícios.
