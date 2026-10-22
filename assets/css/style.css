@@ -1904,6 +1904,39 @@ h3 {
   }
 }
 
+/* Ajuste da faixa de empresas parceiras:
+   mantém o título à esquerda e a caixa de nomes à direita
+   em tablets e telas maiores, deixando a coluna apenas no celular. */
+@media (min-width: 681px) {
+  .partner-strip-inner {
+    grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr);
+    align-items: center;
+    gap: 34px;
+  }
+
+  .partner-marquee {
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-2) rgba(255, 255, 255, .06);
+  }
+
+  .partner-marquee::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .partner-marquee::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, .05);
+    border-radius: 20px;
+  }
+
+  .partner-marquee::-webkit-scrollbar-thumb {
+    background: rgba(80, 225, 192, .5);
+    border-radius: 20px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .partner-track {
     animation: none;

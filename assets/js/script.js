@@ -37,7 +37,9 @@
 
   // Animações discretas ao entrar na área visível; respeita preferência de movimento reduzido.
   const revealItems = document.querySelectorAll(".reveal");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    : false;
 
   if ("IntersectionObserver" in window && !reduceMotion) {
     const observer = new IntersectionObserver((entries, currentObserver) => {
@@ -106,7 +108,7 @@
       url: "https://eliveltonsantos0793.github.io/maclicia-website/",
       tags: ["HTML", "CSS", "JavaScript"]
     },
-     {
+    {
       id: "IPRB-Tijucas",
       name: "website-Igreja Presbiteriana Renovada do Brasil | Tijucas-SC",
       category: "Organização Religiosa",
@@ -235,5 +237,11 @@
     partnerMarquee.classList.add("has-partners");
   }
 
-  renderProjects();
+  // A galeria é montada mesmo quando algum recurso visual opcional do navegador não existe.
+  try {
+    renderProjects();
+  } catch (error) {
+    console.error("Não foi possível montar a galeria de projetos:", error);
+    if (projectTotal) projectTotal.textContent = "0";
+  }
 })();
