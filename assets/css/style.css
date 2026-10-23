@@ -2009,6 +2009,10 @@ h3 {
       background: rgb(170 185 231 / 9%);;
     }
 
+    [data-theme="light"] .brand{
+      color: var(--surface);
+    }
+
     /*===Seção sobre mim===*/
 
     [data-theme="light"] .about-section{
