@@ -3,9 +3,9 @@
 
   //Alternancia entre tema claro e escuro
 
-  const themetoggle = document.querySelector("#theme-toggle");
-  const themeicon = document. querySelector("#theme-icon");
-  const themelabel = document. querySelector("#theme-label");
+  const themetoggle=document.querySelector("#theme-toggle");
+  const themeicon=document. querySelector("#theme-icon");
+  const themelabel=document. querySelector("#theme-label");
   
   const root = document. documentElement;
 
