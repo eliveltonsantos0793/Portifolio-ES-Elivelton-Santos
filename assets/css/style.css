@@ -1946,3 +1946,120 @@ h3 {
     scroll-behavior: auto;
   }
 }
+
+/*==============================================================
+   Alternância de Tema
+  ==============================================================*/
+  
+  
+  [data-theme="light"] {
+    color-scheme: light;
+
+    --bg:#f6f8fc;
+    --bg-soft: #edf1f8;
+    --surface: #ffffff;
+    --surface-light: #f2f5fa;
+
+    --text: #182238;
+    --muted: #58667e;
+    --multed-dark: #6c7890;
+
+    --line: rgba(24, 34, 56, 0.14);
+
+    --accent: #6254d9;
+    --accent-2: #087f70;
+  }
+
+  /* ===Cabeçalho claro===*/
+
+  [data-theme="light"] .site-header{
+    background: rgba(246, 248, 252, 0.92);
+    border-bottom-color: var(--line) ;
+    }
+
+    [data-theme="light"] .code-lines p{
+      color: var(--surface);
+    }
+
+    [data-theme="light"] .floating-chip strong {
+      color: var(--surface);
+    }
+
+    [data-theme="light"] .contact-form input{
+      background-color:#f1f3f7;
+
+    }
+
+    [data-theme="light"]  .contact-form select{
+      background-color:#f1f3f7;
+
+    }
+
+
+    [data-theme="light"] .contact-form textarea{
+      background-color:#f1f3f7;
+
+    }
+
+    [data-theme="light"] .contact-form label{
+      color: #181b83; 
+    }
+
+    [data-theme="light"] .project-gallery-shell reveal is-visible{
+      background: rgb(170 185 231 / 9%);;
+    }
+
+    /*===Seção sobre mim===*/
+
+    [data-theme="light"] .about-section{
+      background: linear-gradient(180dg, rgba(24, 34, 56, 0.025) transparent);
+      border-top-color: var(--line);
+      border-bottom-color: var(--line);
+    }
+
+    /*===Etiquetas de habilidades e tecnologias===*/
+
+    [data-theme="light"] .skill-list span,
+    [data-theme="light"] .service-tags span,
+    [data-theme="light"] .project-tags span {
+      color: var(--muted);
+      background: rgba(24, 34, 56, 0.025);
+      border-color: var(--line);
+    }
+
+    /*===Botão secundário===*/
+
+    [data-theme="light"] .button-secondary{
+      background: rgba(24, 34, 56, 0.025);
+    }
+
+    /*===Botão de Thema===*/
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background o.2s ease, border-color 0.2s ease;
+    }
+
+
+    .theme-toggle:hover{
+      border-color: var(--accent);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset:  3px;
+    }
+
+
+

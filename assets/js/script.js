@@ -1,6 +1,68 @@
 (() => {
   "use strict";
 
+  //Alternancia entre tema claro e escuro
+
+  const themetoggle = document.querySelector("#theme-toggle");
+  const themeicon = document. querySelector("#theme-icon");
+  const themelabel = document. querySelector("#theme-label");
+  
+  const root = document. documentElement;
+
+  function applytheme(theme) {
+    const islight = theme ==="light";
+
+    if (islight) {
+      root.dataset.theme = "light";
+    } else {
+      delete root.dataset.theme;
+    }
+
+    if (themetoggle && themeicon && themelabel) {
+      themeicon.textContent = islight ? "🌙​" : "🌞​";
+      themelabel.textContent = islight ? "tema escuro" : "tema claro";
+
+      themetoggle.setAttribute(
+        "aria-label",
+        islight ? "ativar tema escuro" : "ativar tema claro"
+      );
+
+      themetoggle.setAttribute("aria-pressed", String(islight));
+    } 
+  }
+
+  let savedtheme = null;
+
+  try {
+    savedtheme = localStorage.getItem("portifolio-theme");
+  } catch (error) {
+    //O site continua funcionando se o armazenamento estiver indisponivel
+  }
+
+  const initialtheme =
+  savedtheme === "light" || savedtheme === "dark"
+      ? savedtheme
+      : "dark";
+
+  applytheme(initialtheme);
+  
+  if (themetoggle) {
+    themetoggle.addEventListener("click", () => {
+      const currentTheme =
+      root.dataset.theme === "light" ? "light" : "dark";
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      applytheme(newTheme);
+
+      try {
+        localStorage.setItem("portifolio-theme", newTheme);
+      } catch (error) {
+        //A alternncia continua funcionando nesta visita
+      }
+    });
+  }
+
+
+
   const menuButton = document.querySelector(".menu-toggle");
   const navigation = document.querySelector(".site-nav");
   const navLinks = document.querySelectorAll(".site-nav a");
