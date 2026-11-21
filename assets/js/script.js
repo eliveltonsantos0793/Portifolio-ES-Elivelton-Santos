@@ -207,7 +207,7 @@
   const selectionWhatsApp = document.querySelector("#project-selection-whatsapp");
   const clearSelectionButton = document.querySelector("#project-selection-clear");
   const selectedProjects = new Set();
-  const contactWhatsApp = "5548996696014";
+  const contactWhatsApp = "5548999301549";
 
   function renderProjects() {
     if (!gallery) return;
