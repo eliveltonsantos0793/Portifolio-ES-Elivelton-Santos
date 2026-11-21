@@ -138,7 +138,7 @@
   const PROJECTS = [
     {
       id: "barbearia",
-      name: "Barbearia ",
+      name: "Barbearia Paulista",
       category: "barbearia",
       status: "Projeto prático",
       description: "Apresentação de serviços com experiência visual moderna e contato pelo WhatsApp.",
@@ -172,10 +172,10 @@
     },
     {
       id: "IPRB-Tijucas",
-      name: "website-Igreja Presbiteriana Renovada do Brasil | Tijucas-SC",
+      name: "Igreja Presbiteriana Renovada do Brasil — Tijucas/SC",
       category: "Organização Religiosa",
       status: "Projeto prático",
-      description: "Página para apresentar a Organização religioza, destacar o trabalho e facilitar o contato com os fiéis.",
+      description: "Página para apresentar a Organização religiosa, destacar o trabalho e facilitar o contato com os fiéis.",
       image: "assets/images/Captura de tela IPRB_2026-10-21.png",
       imageAlt: "Prévia do site para IPRB-Tijucas-SC",
       url: "https://eliveltonsantos0793.github.io/IPRB-WEB/",
@@ -183,10 +183,10 @@
     },
     {
       id: "Consultor de imóveis",
-      name: "Corretor de imóveis-autonomo",
+      name: "Corretor de imóveis autônomo",
       category: "Corretor de imóveis",
       status: "Projeto prático",
-      description: "Página para apresentar oprtunidades de negócios, destacar o trabalho e facilitar o contato com clientes.",
+      description: "Página para apresentar oportunidades de negócios, destacar o trabalho e facilitar o contato com clientes.",
       image: "assets/images/print-web-site-corretor.png",
       imageAlt: "Prévia do site para Corretores",
       url: "https://eliveltonsantos0793.github.io/Portif-lio_Imobiliario_Alex/",
