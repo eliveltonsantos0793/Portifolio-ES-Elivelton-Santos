@@ -36,6 +36,7 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
 ├── privacidade.html
 ├── robots.txt
 ├── sitemap.xml
+├── CHANGELOG.md
 ├── assets/
 │   ├── css/
 │   │   ├── style.css
@@ -52,8 +53,9 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
     ├── GUIA-DE-MANUTENCAO.md
     ├── PUBLICACAO-E-HOSPEDAGEM.md
     ├── TESTES-E-VALIDACAO.md
+    ├── ETAPA-5-SEO-SEGURANCA-DESEMPENHO.md
+    ├── ETAPA-6-SEGURANCA-PRIVACIDADE-ACESSIBILIDADE.md
     ├── decisoes/
-    ├── historico (registros de etapas existentes)
     └── projetos/
 ```
 
