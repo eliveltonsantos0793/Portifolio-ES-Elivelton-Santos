@@ -2594,3 +2594,40 @@ h3 {
     display: none;
   }
 }
+
+
+/* Etapa 6 — proteção antispam e mensagens acessíveis do formulário */
+.form-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.form-privacy-note {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.6;
+}
+
+.form-privacy-note a {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin-top: 10px;
+}
+
+.form-status.is-success { color: #16845b; }
+.form-status.is-error { color: #c43f4c; }
+.form-status.is-pending { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .form-submit { transition: none; }
+}
