@@ -245,28 +245,65 @@
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let touchResumeTimer;
 
+  // Escapa conteúdo dinâmico antes de inseri-lo em templates HTML.
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[character]);
+  }
+
+  // Links externos da galeria aceitam somente HTTPS.
+  function safeExternalURL(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" ? url.href : "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  // Imagens dinâmicas devem apontar para a pasta local de imagens do projeto.
+  function safeAssetPath(value) {
+    const path = String(value ?? "");
+    if (!path.startsWith("assets/images/") || path.includes("..") || path.includes("\\\\") || path.includes(":")) {
+      return "";
+    }
+    return path;
+  }
+
   function projectCardMarkup(project, index, isDuplicate = false) {
     const tabIndex = isDuplicate ? ' tabindex="-1"' : "";
+    const projectName = escapeHTML(project.name);
+    const projectUrl = safeExternalURL(project.url);
+    const imagePath = safeAssetPath(project.image);
+    const imageMarkup = imagePath
+      ? `<img src="${escapeHTML(imagePath)}" alt="${escapeHTML(project.imageAlt)}" loading="lazy" decoding="async">`
+      : '<span class="project-image-fallback">Imagem indisponível</span>';
+    const projectLink = projectUrl ? escapeHTML(projectUrl) : "#";
+
     return `
-      <article class="project-card${project.featured ? " project-featured" : ""}" data-project-id="${project.id}" data-project-name="${project.name}">
-        <a class="project-image" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}"${tabIndex}>
-          <img src="${project.image}" alt="${project.imageAlt}" loading="lazy">
+      <article class="project-card${project.featured ? " project-featured" : ""}" data-project-id="${escapeHTML(project.id)}" data-project-name="${projectName}">
+        <a class="project-image" href="${projectLink}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${projectName}"${tabIndex}>
+          ${imageMarkup}
           <span class="image-overlay">Ver projeto ↗</span>
         </a>
-        <div class="project-meta"><span>${String(index + 1).padStart(2, "0")} / ${project.category}</span><span class="project-status">${project.status}</span></div>
-        <h3>${project.name}</h3>
-        <p>${project.description}</p>
+        <div class="project-meta"><span>${String(index + 1).padStart(2, "0")} / ${escapeHTML(project.category)}</span><span class="project-status">${escapeHTML(project.status)}</span></div>
+        <h3>${projectName}</h3>
+        <p>${escapeHTML(project.description)}</p>
         <div class="project-footer">
-          <div class="project-tags">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+          <div class="project-tags">${project.tags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>
           <div class="project-card-actions">
-            <a class="project-open" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}"${tabIndex}>↗</a>
+            <a class="project-open" href="${projectLink}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${projectName}"${tabIndex}>↗</a>
             <button class="project-select" type="button" data-select-project aria-pressed="false"${tabIndex}>+ Selecionar</button>
           </div>
         </div>
       </article>
     `;
   }
-
   function renderProjects() {
     if (!gallery) return;
     const cards = PROJECTS.map((project, index) => projectCardMarkup(project, index)).join("");
@@ -384,8 +421,15 @@
   const partnerMarquee = document.querySelector("#partner-marquee");
   if (partnerMarquee && PARTNER_COMPANIES.length) {
     const items = PARTNER_COMPANIES.map((company) => {
-      const logo = company.logo ? `<img src="${company.logo}" alt="Logo ${company.name}" loading="lazy">` : `<span class="partner-name">${company.name}</span>`;
-      const content = company.url ? `<a href="${company.url}" target="_blank" rel="noopener noreferrer">${logo}</a>` : logo;
+      const companyName = escapeHTML(company.name);
+      const logoPath = safeAssetPath(company.logo);
+      const logo = logoPath
+        ? `<img src="${escapeHTML(logoPath)}" alt="Logo ${companyName}" loading="lazy" decoding="async">`
+        : `<span class="partner-name">${companyName}</span>`;
+      const companyUrl = safeExternalURL(company.url);
+      const content = companyUrl
+        ? `<a href="${escapeHTML(companyUrl)}" target="_blank" rel="noopener noreferrer">${logo}</a>`
+        : logo;
       return `<div class="partner-item">${content}</div>`;
     }).join("");
     partnerMarquee.innerHTML = `<div class="partner-track">${items}${items}</div>`;
