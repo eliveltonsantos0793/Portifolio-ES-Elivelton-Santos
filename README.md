@@ -2,7 +2,7 @@
 
 Portfólio pessoal de desenvolvimento web e soluções digitais. O projeto apresenta minha trajetória em formação, trabalhos práticos e canais de contato profissional.
 
-**Site:** https://eliveltonsantos.com.br  
+**Site:** https://www.eliveltonsantos.com.br/  
 **GitHub:** https://github.com/eliveltonsantos0793  
 **LinkedIn:** https://www.linkedin.com/in/eliveltondev
 
@@ -14,7 +14,7 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
+- JavaScript puro (Vanilla)
 - Git e GitHub
 - FormSubmit para o formulário de contato
 
@@ -22,22 +22,42 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
 
 - Layout responsivo e navegação adaptada para dispositivos móveis.
 - Alternância entre tema escuro e claro, com preferência salva no navegador.
-- Galeria dinâmica de projetos com seleção de múltiplos itens.
-- Geração de mensagem para contato via WhatsApp.
+- Galeria dinâmica de projetos com seleção múltipla e encaminhamento de mensagem via WhatsApp.
 - Formulário de contato integrado ao FormSubmit.
+- Página de política de privacidade.
 - Metadados básicos para mecanismos de busca e compartilhamento.
 - Respeito à preferência por movimento reduzido.
 
-## Estrutura
+## Estrutura principal
 
 ```text
 .
 ├── index.html
-└── assets/
-    ├── css/style.css
-    ├── js/script.js
-    └── images/
+├── privacidade.html
+├── robots.txt
+├── sitemap.xml
+├── assets/
+│   ├── css/
+│   │   ├── style.css
+│   │   └── privacy.css
+│   ├── js/
+│   │   ├── script.js
+│   │   └── contact-form.js
+│   └── images/
+└── docs/
+    ├── index.md
+    ├── DOCUMENTO-MESTRE.md
+    ├── ARQUITETURA.md
+    ├── ESTRUTURA-DO-PROJETO.md
+    ├── GUIA-DE-MANUTENCAO.md
+    ├── PUBLICACAO-E-HOSPEDAGEM.md
+    ├── TESTES-E-VALIDACAO.md
+    ├── decisoes/
+    ├── historico (registros de etapas existentes)
+    └── projetos/
 ```
+
+Consulte o [índice da documentação](docs/index.md) para conhecer os documentos técnicos, operacionais e históricos.
 
 ## Executar localmente
 
@@ -49,7 +69,7 @@ Não há etapa de instalação de dependências para a versão estática do port
 
 ## Projetos apresentados
 
-Os cards e seus metadados são mantidos no array `PROJECTS`, em `assets/js/script.js`. Ao adicionar um projeto, revise nome, descrição, tecnologias, imagem, texto alternativo e URL publicada.
+Os cards e seus metadados são mantidos na estrutura `PROJECTS`, em `assets/js/script.js`. Ao adicionar um projeto, revise nome, descrição, tecnologias, imagem, texto alternativo, status e URL publicada.
 
 Os projetos apresentados são trabalhos práticos e demonstrativos. A tecnologia de cada card deve refletir a implementação correspondente; projetos em estudo ou desenvolvimento devem ser identificados como tais.
 
@@ -63,4 +83,4 @@ Ao contribuir, verifique navegação por teclado, textos alternativos, contraste
 
 ## Autor
 
-**Elivelton Santos** — desenvolvedor júnior em formação, com foco em desenvolvimento front-end, sites institucionais e aprendizado de automação e inteligência artificial.
+**Elivelton Santos** — desenvolvedor júnior em formação, com foco em desenvolvimento front-end e aprendizado de automação e inteligência artificial.
