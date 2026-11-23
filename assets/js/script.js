@@ -232,6 +232,8 @@
   const PARTNER_COMPANIES = [];
 
   const gallery = document.querySelector("#project-gallery");
+  const galleryShell = document.querySelector(".project-gallery-shell");
+  const motionToggle = document.querySelector("#projects-motion-toggle");
   const projectTotal = document.querySelector("#project-total");
   const selectionBar = document.querySelector("#project-selection-bar");
   const selectionCount = document.querySelector("#project-selection-count");
@@ -240,12 +242,14 @@
   const clearSelectionButton = document.querySelector("#project-selection-clear");
   const selectedProjects = new Set();
   const contactWhatsApp = "5548999301549";
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let touchResumeTimer;
 
-  function renderProjects() {
-    if (!gallery) return;
-    gallery.innerHTML = PROJECTS.map((project, index) => `
+  function projectCardMarkup(project, index, isDuplicate = false) {
+    const tabIndex = isDuplicate ? ' tabindex="-1"' : "";
+    return `
       <article class="project-card${project.featured ? " project-featured" : ""}" data-project-id="${project.id}" data-project-name="${project.name}">
-        <a class="project-image" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}">
+        <a class="project-image" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}"${tabIndex}>
           <img src="${project.image}" alt="${project.imageAlt}" loading="lazy">
           <span class="image-overlay">Ver projeto ↗</span>
         </a>
@@ -255,31 +259,39 @@
         <div class="project-footer">
           <div class="project-tags">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
           <div class="project-card-actions">
-            <a class="project-open" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}">↗</a>
-            <button class="project-select" type="button" data-select-project aria-pressed="false">+ Selecionar</button>
+            <a class="project-open" href="${project.url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${project.name}"${tabIndex}>↗</a>
+            <button class="project-select" type="button" data-select-project aria-pressed="false"${tabIndex}>+ Selecionar</button>
           </div>
         </div>
       </article>
-    `).join("");
+    `;
+  }
+
+  function renderProjects() {
+    if (!gallery) return;
+    const cards = PROJECTS.map((project, index) => projectCardMarkup(project, index)).join("");
+    const duplicateCards = PROJECTS.map((project, index) => projectCardMarkup(project, index, true)).join("");
+    gallery.innerHTML = `
+      <div class="project-track">
+        <div class="project-gallery-group">${cards}</div>
+        <div class="project-gallery-group" aria-hidden="true">${duplicateCards}</div>
+      </div>
+    `;
 
     if (projectTotal) projectTotal.textContent = String(PROJECTS.length);
-    gallery.querySelectorAll("[data-select-project]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const card = button.closest("[data-project-id]");
-        const id = card.dataset.projectId;
-        if (selectedProjects.has(id)) {
-          selectedProjects.delete(id);
-          button.textContent = "+ Selecionar";
-          button.setAttribute("aria-pressed", "false");
-          card.classList.remove("is-selected");
-        } else {
-          selectedProjects.add(id);
-          button.textContent = "✓ Selecionado";
-          button.setAttribute("aria-pressed", "true");
-          card.classList.add("is-selected");
-        }
-        updateProjectSelection();
-      });
+    syncProjectCards();
+  }
+
+  function syncProjectCards() {
+    if (!gallery) return;
+    gallery.querySelectorAll("[data-project-id]").forEach((card) => {
+      const selected = selectedProjects.has(card.dataset.projectId);
+      card.classList.toggle("is-selected", selected);
+      const button = card.querySelector("[data-select-project]");
+      if (button) {
+        button.textContent = selected ? "✓ Selecionado" : "+ Selecionar";
+        button.setAttribute("aria-pressed", String(selected));
+      }
     });
   }
 
@@ -287,37 +299,86 @@
     const selected = PROJECTS.filter((project) => selectedProjects.has(project.id));
     const count = selected.length;
     if (selectionBar) selectionBar.hidden = count === 0;
-    if (!count) return;
-    if (selectionCount) selectionCount.textContent = `${count} ${count === 1 ? "projeto selecionado" : "projetos selecionados"}`;
-    if (selectionNames) selectionNames.textContent = selected.map((project) => project.name).join(" + ");
+    if (selectionCount) {
+      selectionCount.textContent = `${count} ${count === 1 ? "projeto selecionado" : "projetos selecionados"}`;
+    }
+    if (selectionNames) {
+      selectionNames.textContent = count
+        ? selected.map((project) => project.name).join(" + ")
+        : "Selecione projetos para conversar sobre eles.";
+    }
+    if (!count) {
+      if (selectionWhatsApp) selectionWhatsApp.href = "#contato";
+      return;
+    }
     const message = `Olá, Elivelton! Visitei seu portfólio e gostaria de conversar sobre estes projetos:\n${selected.map((project) => `• ${project.name}`).join("\n")}\nPodemos conversar sobre uma solução semelhante?`;
-    if (selectionWhatsApp) selectionWhatsApp.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(message)}`;
+    if (selectionWhatsApp) {
+      selectionWhatsApp.href = `https://wa.me/${contactWhatsApp}?text=${encodeURIComponent(message)}`;
+    }
+  }
+
+  if (gallery) {
+    gallery.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-select-project]");
+      if (!button) return;
+      const card = button.closest("[data-project-id]");
+      if (!card) return;
+      const id = card.dataset.projectId;
+      if (selectedProjects.has(id)) selectedProjects.delete(id);
+      else selectedProjects.add(id);
+      syncProjectCards();
+      updateProjectSelection();
+    });
+
+    gallery.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "touch") return;
+      gallery.classList.add("is-interacting");
+      window.clearTimeout(touchResumeTimer);
+    });
+
+    const resumeAfterTouch = () => {
+      if (!gallery.classList.contains("is-interacting")) return;
+      window.clearTimeout(touchResumeTimer);
+      touchResumeTimer = window.setTimeout(() => {
+        gallery.scrollLeft = 0;
+        gallery.classList.remove("is-interacting");
+      }, 4500);
+    };
+
+    gallery.addEventListener("pointerup", resumeAfterTouch);
+    gallery.addEventListener("pointercancel", resumeAfterTouch);
+  }
+
+  if (motionToggle && galleryShell) {
+    motionToggle.addEventListener("click", () => {
+      const paused = galleryShell.classList.toggle("is-paused");
+      motionToggle.setAttribute("aria-pressed", String(paused));
+      motionToggle.textContent = paused ? "Retomar movimento" : "Pausar movimento";
+      motionToggle.setAttribute(
+        "aria-label",
+        paused ? "Retomar movimento automático da galeria" : "Pausar movimento automático da galeria"
+      );
+    });
+  }
+
+  if (galleryShell && reducedMotionQuery.matches) {
+    galleryShell.classList.add("is-reduced-motion");
+  }
+
+  if (reducedMotionQuery.addEventListener) {
+    reducedMotionQuery.addEventListener("change", (event) => {
+      if (!galleryShell) return;
+      galleryShell.classList.toggle("is-reduced-motion", event.matches);
+    });
   }
 
   if (clearSelectionButton) {
     clearSelectionButton.addEventListener("click", () => {
       selectedProjects.clear();
-      if (gallery) gallery.querySelectorAll("[data-project-id]").forEach((card) => {
-        card.classList.remove("is-selected");
-        const button = card.querySelector("[data-select-project]");
-        if (button) {
-          button.textContent = "+ Selecionar";
-          button.setAttribute("aria-pressed", "false");
-        }
-      });
+      syncProjectCards();
       updateProjectSelection();
     });
   }
-
-  // Rolagem horizontal dentro da galeria, sem aumentar o comprimento da página.
-  const scrollLeftButton = document.querySelector("#projects-scroll-left");
-  const scrollRightButton = document.querySelector("#projects-scroll-right");
-  function scrollGallery(direction) {
-    if (!gallery) return;
-    gallery.scrollBy({ left: direction * Math.max(280, gallery.clientWidth * 0.8), behavior: "smooth" });
-  }
-  if (scrollLeftButton) scrollLeftButton.addEventListener("click", () => scrollGallery(-1));
-  if (scrollRightButton) scrollRightButton.addEventListener("click", () => scrollGallery(1));
 
   // Faixa de empresas parceiras. Sem empresas cadastradas, não exibe marcas fictícias.
   const partnerMarquee = document.querySelector("#partner-marquee");
