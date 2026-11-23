@@ -2414,3 +2414,10 @@ h3 {
     transition: none;
   }
 }
+
+
+@media (max-width: 760px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
