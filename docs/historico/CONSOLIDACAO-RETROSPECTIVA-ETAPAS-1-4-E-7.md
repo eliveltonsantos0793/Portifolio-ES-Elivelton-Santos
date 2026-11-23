@@ -67,8 +67,11 @@ As alterações documentais posteriores foram conduzidas em PRs separados, prese
 
 - [PR #1 — melhorias de apresentação profissional](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/1)
 - [PR #2 — modernização do portfólio](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/2)
+- [PR #3 — organização de documentação redundante](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/3)
+- [PR #4 — apresentação pública do ES-DRIVERS](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/4)
 - [PR #5 — atualização histórica das Etapas 5 e 6](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/5)
 - [PR #6 — documentação central](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/6)
+- [PR #7 — consolidação retrospectiva das Etapas 1 a 4 e 7](https://github.com/eliveltonsantos0793/Portifolio-ES-Elivelton-Santos/pull/7)
 
 ## 5. Conclusão e uso futuro
 
