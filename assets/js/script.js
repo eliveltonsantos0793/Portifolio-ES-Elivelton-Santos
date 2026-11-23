@@ -269,7 +269,7 @@
   // Imagens dinâmicas devem apontar para a pasta local de imagens do projeto.
   function safeAssetPath(value) {
     const path = String(value ?? "");
-    if (!path.startsWith("assets/images/") || path.includes("..") || path.includes("\\\\") || path.includes(":")) {
+    if (!path.startsWith("assets/images/") || path.includes("..") || path.includes(String.fromCharCode(92)) || path.includes(":")) {
       return "";
     }
     return path;
