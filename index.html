@@ -44,8 +44,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261123-5">
-  <script src="assets/js/script.js?v=20261123-5" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261123-6">
+  <script src="assets/js/script.js?v=20261123-6" defer></script>
+  <script src="assets/js/contact-form.js?v=20261123-6" defer></script>
 </head>
 
 <body>
@@ -327,6 +328,10 @@
 
           <input type="hidden" name="_subject" value="Novo contato pelo portfólio de Elivelton Santos">
           <input type="hidden" name="_captcha" value="false">
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="website">Não preencha este campo</label>
+            <input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <input type="hidden" name="_template" value="table">
 
           <div class="form-heading"><span>ME CONTE SOBRE SEU PROJETO</span><span class="form-spark">✳</span></div>
@@ -351,10 +356,11 @@
           <textarea id="message" name="message" rows="4" placeholder="Descreva brevemente sua ideia..."
             required></textarea>
 
-          <button id="form-submit-btn" class="button button-primary form-submit" type="submit">Enviar mensagem <span
-              aria-hidden="true">↗</span></button>
+          <p class="form-privacy-note">As informações serão utilizadas para responder ao seu contato. Consulte a <a href="privacidade.html">Política de Privacidade</a>.</p>
 
-          <p id="form-status" class="form-note" role="status" aria-live="polite" aria-atomic="true" style="margin-top: 10px;"></p>
+          <button id="form-submit-btn" class="button button-primary form-submit" type="submit"><span id="form-submit-label">Enviar mensagem</span> <span aria-hidden="true">↗</span></button>
+
+          <p id="form-status" class="form-note form-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
         </form>
       </div>
@@ -381,7 +387,8 @@
       <a class="back-top" href="#inicio">Voltar ao topo ↑</a>
     </div>
     <div class="container footer-bottom"><span>© <span id="year">2026</span> Elivelton Santos | Todos os direitos
-        reservados.</span><a href="https://www.linkedin.com/in/eliveltondev" target="_blank" rel="noopener noreferrer">
+        reservados.</span><a href="privacidade.html">Política de Privacidade</a>
+      <a href="https://www.linkedin.com/in/eliveltondev" target="_blank" rel="noopener noreferrer">
         <span> Desenvolvido por Elivelton Santos </span> in ↗</a>
     </div>
   </footer>
@@ -389,56 +396,6 @@
     aria-label="Conversar pelo WhatsApp"><img src="./assets/images/whatsapp.png" alt="logo whatsapp"></a>
 
 
-  <script>
-    (() => {
-      const form = document.getElementById("contact-form-js");
-      const status = document.getElementById("form-status");
-      const btn = document.getElementById("form-submit-btn");
-
-      if (!form || !status || !btn) {
-        console.error("Elementos do formulário não encontrados.");
-        return;
-      }
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        btn.disabled = true;
-        btn.setAttribute("aria-disabled", "true");
-        btn.textContent = "Enviando...";
-        status.textContent = "Enviando sua mensagem...";
-        status.style.color = "#d1d5db";
-
-        try {
-          const response = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: {
-              Accept: "application/json"
-            }
-          });
-
-          const data = await response.json().catch(() => ({}));
-
-          if (!response.ok || String(data.success) !== "true") {
-            throw new Error(data.message || "Não foi possível enviar sua mensagem.");
-          }
-
-          status.textContent = "Mensagem enviada com sucesso! Obrigado pelo contato.";
-          status.style.color = "#4CAF50";
-          form.reset();
-        } catch (error) {
-          console.error(error);
-          status.textContent = error.message || "Ocorreu um erro ao enviar a mensagem.";
-          status.style.color = "#ff5252";
-        } finally {
-          btn.disabled = false;
-          btn.setAttribute("aria-disabled", "false");
-          btn.textContent = "Enviar mensagem ↗";
-        }
-      });
-    })();
-  </script>
 </body>
 
 </html>
