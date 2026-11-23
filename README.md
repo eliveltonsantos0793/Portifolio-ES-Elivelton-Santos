@@ -39,11 +39,7 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
 ├── CHANGELOG.md
 ├── assets/
 │   ├── css/
-│   │   ├── style.css
-│   │   └── privacy.css
 │   ├── js/
-│   │   ├── script.js
-│   │   └── contact-form.js
 │   └── images/
 └── docs/
     ├── index.md
@@ -55,8 +51,12 @@ O site foi construído com HTML, CSS e JavaScript. Seu objetivo é apresentar pr
     ├── TESTES-E-VALIDACAO.md
     ├── ETAPA-5-SEO-SEGURANCA-DESEMPENHO.md
     ├── ETAPA-6-SEGURANCA-PRIVACIDADE-ACESSIBILIDADE.md
+    ├── historico/
+    │   └── CONSOLIDACAO-RETROSPECTIVA-ETAPAS-1-4-E-7.md
     ├── decisoes/
+    │   └── DECISOES-TECNICAS.md
     └── projetos/
+        └── ES-DRIVERS.md
 ```
 
 Consulte o [índice da documentação](docs/index.md) para conhecer os documentos técnicos, operacionais e históricos.

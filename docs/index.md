@@ -17,12 +17,13 @@ A documentação descreve a implementação conhecida do projeto e registra sepa
 
 ## Histórico das etapas
 
-Os registros abaixo preservam o histórico das etapas de auditoria e modernização. Atualizações posteriores são identificadas dentro dos próprios documentos, sem apagar o contexto original.
+Os relatórios das Etapas 5 e 6 preservam seus registros originais e atualizações posteriores. A consolidação retrospectiva das Etapas 1 a 4 e 7 é apresentada separadamente e explicita os limites das evidências disponíveis.
 
-- [Etapa 5 — SEO, segurança e desempenho](ETAPA-5-SEO-SEGURANCA-DESEMPENHO.md)
+- [Consolidação retrospectiva — Etapas 1 a 4 e 7](historico/CONSOLIDACAO-RETROSPECTIVA-ETAPAS-1-4-E-7.md)
+- [Etapa 5 — SEO, segurança e validação](ETAPA-5-SEO-SEGURANCA-DESEMPENHO.md)
 - [Etapa 6 — Segurança, privacidade e acessibilidade](ETAPA-6-SEGURANCA-PRIVACIDADE-ACESSIBILIDADE.md)
 
-> Os registros completos das Etapas 1 a 4 e 7 não estão consolidados aqui neste momento. Não serão reconstruídos como relatórios integrais sem evidências suficientes. Informações confirmadas poderão ser reunidas em um resumo retrospectivo, claramente identificado como tal.
+> Os relatórios individuais integrais das Etapas 1 a 4 não foram recuperados. O documento retrospectivo registra apenas fatos sustentados por evidências disponíveis; não substitui os registros originais.
 
 ## Decisões técnicas
 
