@@ -70,31 +70,53 @@
 
   const menuButton = document.querySelector(".menu-toggle");
   const navigation = document.querySelector(".site-nav");
-  const navLinks = document.querySelectorAll(".site-nav a");
+  const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
+  const mobileNavQuery = window.matchMedia("(max-width: 900px)");
 
-  function closeMenu() {
+  function setMenuOpen(isOpen) {
     if (!menuButton || !navigation) return;
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Abrir menu");
-    navigation.classList.remove("is-open");
-    document.body.classList.remove("menu-open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    navigation.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("menu-open", isOpen);
+  }
+
+  function closeMenu(restoreFocus = false) {
+    if (!menuButton || !navigation) return;
+    setMenuOpen(false);
+    if (restoreFocus) menuButton.focus();
   }
 
   if (menuButton && navigation) {
     menuButton.addEventListener("click", () => {
       const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      menuButton.setAttribute("aria-label", isOpen ? "Abrir menu" : "Fechar menu");
-      navigation.classList.toggle("is-open", !isOpen);
-      document.body.classList.toggle("menu-open", !isOpen);
+      setMenuOpen(!isOpen);
+      if (!isOpen && mobileNavQuery.matches) {
+        const firstLink = navigation.querySelector('a[href^="#"]');
+        if (firstLink) firstLink.focus();
+      }
     });
 
-    navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+    navLinks.forEach((link) => link.addEventListener("click", () => closeMenu()));
+
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+        closeMenu(true);
+      }
     });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (
+        menuButton.getAttribute("aria-expanded") === "true" &&
+        !navigation.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 760) closeMenu();
+      if (!mobileNavQuery.matches) closeMenu();
     });
   }
 
@@ -132,6 +154,11 @@
         navLinks.forEach((link) => {
           const active = link.getAttribute("href") === `#${entry.target.id}`;
           link.classList.toggle("active", active);
+          if (active) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
         });
       });
     }, { rootMargin: "-35% 0px -55% 0px" });
