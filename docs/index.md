@@ -14,6 +14,7 @@ A documentação descreve a implementação conhecida do projeto e registra sepa
 | [Guia de Manutenção](GUIA-DE-MANUTENCAO.md) | Orientações para atualizar projetos, imagens, contatos e demais conteúdos. |
 | [Publicação e Hospedagem](PUBLICACAO-E-HOSPEDAGEM.md) | Informações conhecidas sobre publicação e hospedagem na Hostinger. |
 | [Testes e Validação](TESTES-E-VALIDACAO.md) | Verificações realizadas, resultados e validações que ainda precisam ser executadas. |
+| [Fase 2 — Painel Administrativo ES](FASE-2-PAINEL-ADMINISTRATIVO-ESCOPO.md) | Escopo aprovado, decisões de segurança, diagnóstico inicial e planejamento do painel administrativo. |
 
 ## Histórico das etapas
 

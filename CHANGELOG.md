@@ -2,6 +2,13 @@
 
 Este arquivo registra mudanças relevantes do portfólio. Não pretende substituir o histórico detalhado de commits e Pull Requests.
 
+## 2026-11-23 — Fase 2: planejamento do Painel Administrativo ES
+
+- Registradas as decisões aprovadas para senha forte, TOTP com Google Authenticator, conta administrativa única, códigos de recuperação e histórico de atividades.
+- Documentados o diagnóstico da aplicação estática atual, os requisitos funcionais e os controles mínimos de segurança.
+- Definida uma arquitetura candidata com backend e banco de dados, condicionada à validação dos recursos disponíveis na hospedagem compartilhada Hostinger.
+- Nenhum arquivo da aplicação (HTML, CSS, JavaScript ou imagens), configuração da hospedagem ou conteúdo da branch `master` foi alterado.
+
 ## 2026-11-23 — Consolidação retrospectiva do histórico
 
 - Criado um registro retrospectivo para as Etapas 1 a 4 e 7, distinguindo fatos comprovados de informações históricas que não puderam ser reconstruídas integralmente.
