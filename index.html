@@ -405,7 +405,7 @@
 
         btn.disabled = true;
         btn.setAttribute("aria-disabled", "true");
-        btn.innerHTML = "Enviando...";
+        btn.textContent = "Enviando...";
         status.textContent = "Enviando sua mensagem...";
         status.style.color = "#d1d5db";
 
@@ -434,7 +434,7 @@
         } finally {
           btn.disabled = false;
           btn.setAttribute("aria-disabled", "false");
-          btn.innerHTML = 'Enviar mensagem <span aria-hidden="true">↗</span>';
+          btn.textContent = "Enviar mensagem ↗";
         }
       });
     })();
