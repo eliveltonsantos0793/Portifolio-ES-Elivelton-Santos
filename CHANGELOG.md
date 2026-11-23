@@ -27,9 +27,11 @@ Este arquivo registra mudanças relevantes do portfólio. Não pretende substitu
 ## Histórico e rastreabilidade
 
 - PR #1: melhorias de apresentação profissional, contato e oportunidades profissionais.
+- PR #2: modernização funcional e visual do portfólio.
 - PR #3: remoção do README redundante em `assets/`.
 - PR #4: reorganização da apresentação pública do ES-DRIVERS em `docs/projetos/ES-DRIVERS.md`.
 - PR #5: atualização histórica dos documentos das Etapas 5 e 6.
 - PR #6: consolidação da documentação central.
+- PR #7: consolidação retrospectiva das Etapas 1 a 4 e 7 e atualização da estrutura documental.
 
 As datas acima identificam os registros consolidados nesta documentação. Para detalhes técnicos e limitações, consulte [docs/index.md](docs/index.md).
