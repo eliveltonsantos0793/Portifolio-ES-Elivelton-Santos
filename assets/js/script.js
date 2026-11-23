@@ -18,8 +18,13 @@
       delete root.dataset.theme;
     }
 
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute("content", islight ? "#f3f5fa" : "#090f20");
+    }
+
     if (themetoggle && themeicon && themelabel) {
-      themeicon.textContent = islight ? "🌙​" : "🌞​";
+      themeicon.textContent = islight ? "☾" : "☼";
       themelabel.textContent = islight ? "tema escuro" : "tema claro";
 
       themetoggle.setAttribute(
