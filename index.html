@@ -4,25 +4,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#090f20">
   <meta name="description"
-    content="Elivelton Santos — desenvolvimento web, sites institucionais, automação de processos e soluções com inteligência artificial.">
-  <meta name="keywords"
-    content="Elivelton Santos, desenvolvedor web, HTML, CSS, JavaScript, automação, inteligência artificial, sites institucionais">
+    content="Elivelton Santos — desenvolvedor web júnior em formação. Projetos de sites institucionais, front-end, automação de processos e IA aplicada.">
   <meta name="author" content="Elivelton Santos">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.eliveltonsantos.com.br/">
+
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Elivelton Santos">
   <meta property="og:title" content="Elivelton Santos | Desenvolvimento Web & Automação">
   <meta property="og:description"
-    content="Soluções digitais práticas para negócios e pessoas. Desenvolvimento web, automação e IA.">
+    content="Desenvolvedor web júnior em formação, com projetos práticos em desenvolvimento front-end, automação e IA aplicada.">
   <meta property="og:type" content="website">
-  <title>Elivelton Santos | Desenvolvimento Web & Automação</title>
+  <meta property="og:url" content="https://www.eliveltonsantos.com.br/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Elivelton Santos | Desenvolvimento Web & Automação">
+  <meta name="twitter:description"
+    content="Projetos práticos em desenvolvimento web, automação de processos e IA aplicada.">
+
+  <title>Elivelton Santos | Desenvolvedor Web Júnior & Automação</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Elivelton Santos",
+    "url": "https://www.eliveltonsantos.com.br/",
+    "jobTitle": "Desenvolvedor web júnior em formação",
+    "description": "Desenvolvedor web júnior em formação, com projetos práticos em front-end e estudos em automação de processos e inteligência artificial aplicada.",
+    "knowsAbout": ["HTML5", "CSS3", "JavaScript", "Desenvolvimento front-end", "Desenvolvimento de sites institucionais", "Automação de processos", "Engenharia de prompts", "Inteligência artificial aplicada"],
+    "sameAs": ["https://github.com/eliveltonsantos0793", "https://www.linkedin.com/in/eliveltondev"]
+  }
+  </script>
   <link rel="icon" type="image/png" href="assets/images/logo-elivelton.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261023">
-  <script src="assets/js/script.js?v=20261023" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261123-6">
+  <script src="assets/js/script.js?v=20261123-6" defer></script>
+  <script src="assets/js/contact-form.js?v=20261123-6" defer></script>
 </head>
 
 <body>
@@ -190,13 +214,12 @@
 
         <div class="project-gallery-shell reveal">
           <div class="gallery-toolbar">
-            <p><span id="project-total">0</span> projetos <span class="gallery-hint">· deslize para explorar</span></p>
+            <p><span id="project-total">0</span> projetos <span class="gallery-hint">· explore a faixa ou pause quando quiser</span></p>
             <div class="gallery-controls" aria-label="Controles da galeria de projetos">
-              <button type="button" id="projects-scroll-left" aria-label="Ver projetos anteriores">←</button>
-              <button type="button" id="projects-scroll-right" aria-label="Ver próximos projetos">→</button>
+              <button type="button" class="gallery-motion-toggle" id="projects-motion-toggle" aria-pressed="false" aria-label="Pausar movimento automático da galeria">Pausar movimento</button>
             </div>
           </div>
-          <div class="project-gallery" id="project-gallery" tabindex="0" aria-label="Galeria de projetos"></div>
+          <div class="project-gallery" id="project-gallery" tabindex="0" role="region" aria-label="Galeria horizontal de projetos com movimento automático"></div>
         </div>
 
         <aside class="project-selection-bar" id="project-selection-bar" aria-live="polite" hidden>
@@ -305,6 +328,10 @@
 
           <input type="hidden" name="_subject" value="Novo contato pelo portfólio de Elivelton Santos">
           <input type="hidden" name="_captcha" value="false">
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="website">Não preencha este campo</label>
+            <input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <input type="hidden" name="_template" value="table">
 
           <div class="form-heading"><span>ME CONTE SOBRE SEU PROJETO</span><span class="form-spark">✳</span></div>
@@ -329,10 +356,11 @@
           <textarea id="message" name="message" rows="4" placeholder="Descreva brevemente sua ideia..."
             required></textarea>
 
-          <button id="form-submit-btn" class="button button-primary form-submit" type="submit">Enviar mensagem <span
-              aria-hidden="true">↗</span></button>
+          <p class="form-privacy-note">As informações serão utilizadas para responder ao seu contato. Consulte a <a href="privacidade.html">Política de Privacidade</a>.</p>
 
-          <p id="form-status" class="form-note" style="margin-top: 10px;"></p>
+          <button id="form-submit-btn" class="button button-primary form-submit" type="submit"><span id="form-submit-label">Enviar mensagem</span> <span aria-hidden="true">↗</span></button>
+
+          <p id="form-status" class="form-note form-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
         </form>
       </div>
@@ -359,7 +387,8 @@
       <a class="back-top" href="#inicio">Voltar ao topo ↑</a>
     </div>
     <div class="container footer-bottom"><span>© <span id="year">2026</span> Elivelton Santos | Todos os direitos
-        reservados.</span><a href="https://www.linkedin.com/in/eliveltondev" target="_blank" rel="noopener noreferrer">
+        reservados.</span><a href="privacidade.html">Política de Privacidade</a>
+      <a href="https://www.linkedin.com/in/eliveltondev" target="_blank" rel="noopener noreferrer">
         <span> Desenvolvido por Elivelton Santos </span> in ↗</a>
     </div>
   </footer>
@@ -367,56 +396,6 @@
     aria-label="Conversar pelo WhatsApp"><img src="./assets/images/whatsapp.png" alt="logo whatsapp"></a>
 
 
-  <script>
-    (() => {
-      const form = document.getElementById("contact-form-js");
-      const status = document.getElementById("form-status");
-      const btn = document.getElementById("form-submit-btn");
-
-      if (!form || !status || !btn) {
-        console.error("Elementos do formulário não encontrados.");
-        return;
-      }
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        btn.disabled = true;
-        btn.setAttribute("aria-disabled", "true");
-        btn.innerHTML = "Enviando...";
-        status.textContent = "Enviando sua mensagem...";
-        status.style.color = "#d1d5db";
-
-        try {
-          const response = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: {
-              Accept: "application/json"
-            }
-          });
-
-          const data = await response.json().catch(() => ({}));
-
-          if (!response.ok || String(data.success) !== "true") {
-            throw new Error(data.message || "Não foi possível enviar sua mensagem.");
-          }
-
-          status.textContent = "Mensagem enviada com sucesso! Obrigado pelo contato.";
-          status.style.color = "#4CAF50";
-          form.reset();
-        } catch (error) {
-          console.error(error);
-          status.textContent = error.message || "Ocorreu um erro ao enviar a mensagem.";
-          status.style.color = "#ff5252";
-        } finally {
-          btn.disabled = false;
-          btn.setAttribute("aria-disabled", "false");
-          btn.innerHTML = 'Enviar mensagem <span aria-hidden="true">↗</span>';
-        }
-      });
-    })();
-  </script>
 </body>
 
 </html>
