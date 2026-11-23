@@ -21,8 +21,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261123-3">
-  <script src="assets/js/script.js?v=20261123-3" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261123-4">
+  <script src="assets/js/script.js?v=20261123-4" defer></script>
 </head>
 
 <body>
@@ -190,13 +190,12 @@
 
         <div class="project-gallery-shell reveal">
           <div class="gallery-toolbar">
-            <p><span id="project-total">0</span> projetos <span class="gallery-hint">· deslize para explorar</span></p>
+            <p><span id="project-total">0</span> projetos <span class="gallery-hint">· explore a faixa ou pause quando quiser</span></p>
             <div class="gallery-controls" aria-label="Controles da galeria de projetos">
-              <button type="button" id="projects-scroll-left" aria-label="Ver projetos anteriores">←</button>
-              <button type="button" id="projects-scroll-right" aria-label="Ver próximos projetos">→</button>
+              <button type="button" class="gallery-motion-toggle" id="projects-motion-toggle" aria-pressed="false" aria-label="Pausar movimento automático da galeria">Pausar movimento</button>
             </div>
           </div>
-          <div class="project-gallery" id="project-gallery" tabindex="0" aria-label="Galeria de projetos"></div>
+          <div class="project-gallery" id="project-gallery" tabindex="0" role="region" aria-label="Galeria horizontal de projetos com movimento automático"></div>
         </div>
 
         <aside class="project-selection-bar" id="project-selection-bar" aria-live="polite" hidden>
