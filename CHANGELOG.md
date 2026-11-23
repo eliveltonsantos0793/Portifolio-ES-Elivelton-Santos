@@ -2,6 +2,13 @@
 
 Este arquivo registra mudanças relevantes do portfólio. Não pretende substituir o histórico detalhado de commits e Pull Requests.
 
+## 2026-11-23 — Consolidação retrospectiva do histórico
+
+- Criado um registro retrospectivo para as Etapas 1 a 4 e 7, distinguindo fatos comprovados de informações históricas que não puderam ser reconstruídas integralmente.
+- Atualizado o índice da documentação para apontar corretamente os relatórios existentes e o novo registro histórico.
+- Ajustada a árvore de diretórios no README para refletir a organização real da documentação.
+- Nenhum arquivo da aplicação (HTML, CSS, JavaScript ou imagens) foi alterado.
+
 ## 2026-11-23 — Consolidação documental
 
 - Criado o índice central em `docs/index.md`.
@@ -19,8 +26,10 @@ Este arquivo registra mudanças relevantes do portfólio. Não pretende substitu
 
 ## Histórico e rastreabilidade
 
+- PR #1: melhorias de apresentação profissional, contato e oportunidades profissionais.
 - PR #3: remoção do README redundante em `assets/`.
 - PR #4: reorganização da apresentação pública do ES-DRIVERS em `docs/projetos/ES-DRIVERS.md`.
 - PR #5: atualização histórica dos documentos das Etapas 5 e 6.
+- PR #6: consolidação da documentação central.
 
 As datas acima identificam os registros consolidados nesta documentação. Para detalhes técnicos e limitações, consulte [docs/index.md](docs/index.md).
